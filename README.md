@@ -20,11 +20,8 @@ Il Flusso quando si visita la home del client (http://localhost:3001):
    corrisponde in routes a controller application metodo authentication_callback
 5) in questo esempio vengono stampate in json le informazioni ricevute dal server
 
-Implementazione
+# Implementazione Client SSO
 
-============
- Client SSO
-============
 * rails new oauth-client
 
 cd oauth-client
@@ -37,6 +34,8 @@ gem 'omniauth-oauth2'
 
 * create lib/doorkeeper.rb
 ...
+code
+
 require 'omniauth-oauth2'
 
 module OmniAuth
