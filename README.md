@@ -27,15 +27,14 @@ Il Flusso quando si visita la home del client (http://localhost:3001):
 cd oauth-client
 
 * GemFile
-...
+```
 gem 'omniauth-oauth2'
-...
+```
 * bundle install
 
 * create lib/doorkeeper.rb
-...
-code
 
+```
 require 'omniauth-oauth2'
 
 module OmniAuth
@@ -67,26 +66,26 @@ module OmniAuth
     end
   end
 end
-...
+```
 * touch config/initializers/omniauth.rb
-...
+```
 require 'doorkeeper'
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   #provider :doorkeeper, <application_id>, <application_secret>
   provider :doorkeeper, '0f6e92286277c968bcfafbba99c705ad0cba824841c4452b3442da351f4c89ba', 'f8d66b638527d771e774d62d73d888a6809a5badf83fda17ad7f0e885a5aa5f3'
 end
-...
+```
 * config/routes.rb:
-...
+```
 Rails.application.routes.draw do
   root to: redirect('/auth/doorkeeper')
 
   get '/auth/:provider/callback' => 'application#authentication_callback'
 end
-...
+```
 * application_controller.rb:
-...
+```
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
@@ -95,5 +94,5 @@ class ApplicationController < ActionController::Base
     render json: auth.to_json
   end
 end
-
+```
 * rails db:create
